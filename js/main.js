@@ -1,1 +1,3 @@
-console.log("hello123");
+export function sum(a, b) {
+  return a + b;
+}

@@ -2,8 +2,8 @@
   "name": "fe-template",
   "version": "1.0.0",
   "description": "simple templete for fe-developers",
-  "author": "NHAT.BUI",
-  "url": "https://www.facebook.com/Cheatsomething",
+  "author": "",
+  "url": "",
   "license": "MIT License",
   "keywords": [
     "fe template"
@@ -20,9 +20,22 @@
     "gulp-merge-media-queries": "^0.2.1",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "jest": "^27.5.1"
   },
   "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.5.1",
     "gulp-htmlmin": "^5.0.1"
-  }
+  },
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OliverDoan/html_css_js_basic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OliverDoan/html_css_js_basic/issues"
+  },
+  "homepage": "https://github.com/OliverDoan/html_css_js_basic#readme"
 }
