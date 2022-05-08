@@ -1,4 +1,4 @@
-# Template FrontEnd Development
+# Template FrontEnd
 
 ## FE template is a simple template for FE Developers
 
