@@ -32,10 +32,10 @@
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OliverDoan/html_css_js_basic.git"
+    "url": "git+https://github.com/OliverDoan/frontend-template.git"
   },
   "bugs": {
-    "url": "https://github.com/OliverDoan/html_css_js_basic/issues"
+    "url": "https://github.com/OliverDoan/frontend-template/issues"
   },
-  "homepage": "https://github.com/OliverDoan/html_css_js_basic#readme"
+  "homepage": "https://github.com/OliverDoan/frontend-template#readme"
 }
