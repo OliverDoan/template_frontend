@@ -9,19 +9,19 @@ const cleanCss = require("gulp-clean-css");
 
 gulp.task("scss", function () {
   return gulp
-    .src(["scss/**/*.scss"])
+    .src(["src/scss/**/*.scss"])
     .pipe(sass())
     .pipe(autoPrefixer())
     .pipe(cssComb())
     .pipe(cmq({ log: true }))
-    .pipe(gulp.dest("./css"))
+    .pipe(gulp.dest("src/css"))
     .pipe(
       rename({
         suffix: ".min",
       })
     )
     .pipe(cleanCss())
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("src/css"));
 });
 
 gulp.task("serve", function () {
@@ -32,8 +32,8 @@ gulp.task("serve", function () {
     },
   });
 
-  gulp.watch("scss/**/*.scss", gulp.series("scss")).on("change", reload);
-  gulp.watch("css/**/*.css").on("change", reload);
-  gulp.watch("js/**/*.js").on("change", reload);
+  gulp.watch("src/scss/**/*.scss", gulp.series("scss")).on("change", reload);
+  gulp.watch("src/css/**/*.css").on("change", reload);
+  gulp.watch("src/js/**/*.js").on("change", reload);
   gulp.watch("*.html").on("change", reload);
 });
