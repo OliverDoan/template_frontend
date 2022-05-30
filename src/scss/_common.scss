@@ -1,0 +1,20 @@
+@import "./_variable";
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: $body-color;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
