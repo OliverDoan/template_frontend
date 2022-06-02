@@ -2,9 +2,10 @@ body {
   --body-color: #fff;
   --nav-color: #00856f;
   --text-color: #fff;
+  --text-hover-color: #00856f;
   --border-color: #fff;
-  --border-hover-color: #54ddc6;
-  --button-hover-color: #54ddc6;
+  --border-hover-color: #fff;
+  --button-hover-color: #fff;
   --search-color: #333;
 }
 
@@ -12,6 +13,7 @@ body.dark {
   --body-color: #18191a;
   --nav-color: #242526;
   --text-color: #ccc;
+  --text-hover-color: #fff;
   --border-color: #fff;
   --border-hover-color: #858383;
   --button-hover-color: #858383;

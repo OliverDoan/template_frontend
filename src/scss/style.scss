@@ -73,6 +73,9 @@
     &:hover {
       border: 1px solid var(--border-hover-color);
       background-color: var(--border-hover-color);
+      span {
+        color: var(--text-hover-color);
+      }
     }
     span {
       font-weight: 700;
