@@ -1,14 +1,16 @@
 @import "./reset";
 @import "./mixin";
+@import "./variable";
 @import "./common";
 // nav
-.nav-bar {
+.nav {
+  @include displayFlex(center, center);
   position: fixed;
   top: 0;
   left: 0;
   height: 72px;
   width: 100%;
-  background-color: $nav-color;
+  background-color: var(--nav-color);
 
   &__container {
     height: 100%;
@@ -18,43 +20,95 @@
 
   &__logo {
     &__link {
-      color: $text-color;
+      color: var(--text-color);
       text-transform: uppercase;
     }
   }
 
   &__menu {
-    &__items {
-      @include displayFlex(space-between, center);
+    @include displayFlex(space-between, center);
 
-      .nav-item {
-        margin: 0 5px;
+    li {
+      margin: 0 5px;
 
-        &__link {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 21px;
-          color: $text-color;
-          position: relative;
-          padding: 10px;
+      a {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: var(--text-color);
+        position: relative;
+        padding: 10px;
 
-          &::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 51px;
-            height: 2px;
-            opacity: 0;
-            transition: all 0.3s ease;
-            background-color: $text-color;
-          }
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          width: 51px;
+          height: 2px;
+          opacity: 0;
+          transition: all 0.3s ease;
+          background-color: var(--text-color);
         }
+      }
 
-        &:hover a::before {
-          opacity: 1;
-        }
+      &:hover a::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__button-group {
+    @include displayFlex(center, center);
+  }
+
+  &__button {
+    @include displayFlex(center, center);
+    padding: 10px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 40px;
+    background-color: transparent;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid var(--border-hover-color);
+      background-color: var(--border-hover-color);
+    }
+    span {
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 18px;
+      text-transform: capitalize;
+      color: var(--text-color);
+    }
+  }
+
+  &__dark-light {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+
+    margin: 0 5px;
+    i {
+      position: absolute;
+      color: var(--text-color);
+      font-size: 22px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &.sun {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+    &.active {
+      i.sun {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      i.moon {
+        opacity: 0;
+        pointer-events: none;
       }
     }
   }

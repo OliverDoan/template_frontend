@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,31 +18,40 @@
   </head>
 
   <body>
-    <nav class="nav-bar">
-      <div class="nav-bar__container">
-        <span class="nav-bar__logo"
-          ><a class="nav-bar__logo__link" href="#"
+    <nav class="nav">
+      <div class="nav__container">
+        <span class="nav__logo"
+          ><a class="nav__logo__link" href="#"
             ><strong>Blog</strong> Web</a
           ></span
         >
-        <div class="nav-bar__menu">
-          <ul class="nav-bar__menu__items">
-            <li class="nav-item">
-              <a class="nav-item__link" href="#" target="_blank">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item__link" href="#" target="_blank">Service</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item__link" href="#" target="_blank">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-item__link" href="#" target="_blank">Contact</a>
-            </li>
-          </ul>
+
+        <ul class="nav__menu">
+          <li>
+            <a href="#" target="_blank">Home</a>
+          </li>
+          <li>
+            <a href="#" target="_blank">Service</a>
+          </li>
+          <li>
+            <a href="#" target="_blank">About</a>
+          </li>
+          <li>
+            <a href="#" target="_blank">Contact</a>
+          </li>
+        </ul>
+
+        <div class="nav__button-group">
+          <div class="nav__dark-light">
+            <i class="bx bx-moon moon"></i>
+            <i class="bx bx-sun sun"></i>
+          </div>
+          <button class="nav__button">
+            <span>write a blog</span>
+          </button>
         </div>
       </div>
     </nav>
   </body>
-  <script src="js/main.js"></script>
+  <script src="./src/js/main.js"></script>
 </html>

@@ -1,4 +1,4 @@
-@import "./_variable";
+@import "./variable";
 
 * {
   font-family: "Roboto", sans-serif;
@@ -9,7 +9,7 @@
 
 body {
   height: 100vh;
-  background-color: $body-color;
+  background-color: var(--body-color);
 }
 
 .container {
