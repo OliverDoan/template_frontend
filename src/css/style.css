@@ -370,7 +370,7 @@ body {
 	background-color: var(--nav-color);
 }
 
-.nav__mobile .nav__icon-close { /* display: block; */
+.nav__mobile .nav__icon-close {
 	font-size: 25px;
 	float: left;
 	margin: 20px;
