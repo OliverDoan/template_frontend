@@ -25,7 +25,7 @@ window.onload = function () {
 
 window.onscroll = function () {
   const nav = document.querySelector(".nav");
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     nav.classList.add("navbar-transparent");
   } else {
     nav.classList.remove("navbar-transparent");

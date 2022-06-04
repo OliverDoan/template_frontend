@@ -10,7 +10,7 @@
   height: 72px;
   width: 100%;
   background-color: transparent;
-
+  z-index: 99;
   &__container {
     @include displayFlex(space-between, center);
     @extend .container;
@@ -227,16 +227,75 @@
     }
   }
 }
-header {
+.header {
   background-color: #dce9e2;
-  height: 1000px;
+  padding: 72px 0;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    &__content {
+      span {
+        @include displayFlex(start, center);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 150%;
+        color: #00856f;
+      }
+      h1 {
+        font-weight: 700;
+        font-size: 52px;
+        line-height: 130%;
+        margin-top: 16px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        margin: 24px 0;
+        color: #495057;
+      }
+      button {
+        @include displayFlex(center, center);
+        padding: 16px 32px;
+        color: #fff;
+        width: 263px;
+        height: 52px;
+        background: #00856f;
+        border-radius: 40px;
+        border: 2px solid #00856f;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        gap: 20px;
+        &:hover {
+          background: #fff;
+          color: #00856f;
+        }
+      }
+    }
+    &__img {
+      object-fit: contain;
+    }
+  }
 }
+
 footer {
   background-color: #333;
   height: 1000px;
 }
+
 @media only screen and (max-width: 767px) {
   .nav {
+    position: absolute;
+    .nav__logo a,
+    .nav__icon-bar {
+      color: #00856f;
+    }
     &__pc,
     &__button-group {
       display: none;
@@ -244,6 +303,30 @@ footer {
 
     &__icon-bar {
       display: block;
+    }
+  }
+  .header {
+    min-height: 678px;
+    .header__container {
+      &__content {
+        @include displayFlex(center, center);
+        flex-direction: column;
+        span {
+          text-align: center;
+        }
+        h1 {
+          font-weight: 700;
+          font-size: 34px;
+          line-height: 130%;
+          text-align: center;
+        }
+        p {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 150%;
+          text-align: center;
+        }
+      }
     }
   }
 }
