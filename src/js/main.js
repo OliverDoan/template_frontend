@@ -2,7 +2,7 @@ window.onload = function () {
   const body = document.querySelector("body");
 
   // TODO: Toggle dark mode
-  const modeToggle = document.querySelector(".nav__dark-light");
+  const modeToggle = document.querySelector(".dark-light-mode");
 
   let getMode = localStorage.getItem("mode");
   if (getMode && getMode === "dark-mode") {

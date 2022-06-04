@@ -4,7 +4,6 @@
 @import "./common";
 // nav
 .nav {
-  @include displayFlex(center, center);
   position: fixed;
   top: 0;
   left: 0;
@@ -13,32 +12,35 @@
   background-color: var(--nav-color);
 
   &__container {
-    height: 100%;
     @include displayFlex(space-between, center);
     @extend .container;
+    height: 100%;
   }
 
   &__logo {
-    &__link {
+    font-size: 20px;
+    a {
       color: var(--text-color);
       text-transform: uppercase;
     }
   }
 
-  &__menu {
+  &__pc {
     @include displayFlex(space-between, center);
 
     li {
       margin: 0 5px;
+      &:hover a::before {
+        opacity: 1;
+      }
 
       a {
+        position: relative;
         font-weight: 400;
         font-size: 16px;
         line-height: 21px;
         color: var(--text-color);
-        position: relative;
         padding: 10px;
-
         &::before {
           content: "";
           position: absolute;
@@ -49,18 +51,42 @@
           height: 2px;
           opacity: 0;
           transition: all 0.3s ease;
-          background-color: var(--text-color);
+          background-color: #fff;
         }
-      }
-
-      &:hover a::before {
-        opacity: 1;
       }
     }
   }
 
   &__button-group {
     @include displayFlex(center, center);
+    .dark-light-mode {
+      @include displayFlex(center, center);
+      height: 40px;
+      width: 40px;
+      margin: 0 5px;
+      i {
+        position: absolute;
+        color: var(--text-color);
+        font-size: 22px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &.sun {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+
+      &.active {
+        i.sun {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        i.moon {
+          opacity: 0;
+          pointer-events: none;
+        }
+      }
+    }
   }
 
   &__button {
@@ -86,33 +112,114 @@
     }
   }
 
-  &__dark-light {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: 40px;
+  &__input {
+    display: none;
+    &:checked ~ .nav__mobile {
+      transform: translateX(0);
+    }
+    &:checked ~ .nav__overlay {
+      display: block;
+    }
+  }
 
-    margin: 0 5px;
-    i {
-      position: absolute;
-      color: var(--text-color);
-      font-size: 22px;
+  &__icon-bar {
+    font-size: 30px;
+    color: var(--white-color);
+    display: none;
+    cursor: pointer;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  &__mobile {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: var(--nav-color);
+    transform: translateX(200%);
+    transition: all 0.4s ease-in-out;
+
+    .nav__icon-close {
+      float: left;
+      margin: 20px;
+      /* display: block; */
+      font-size: 25px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      &.sun {
-        opacity: 0;
-        pointer-events: none;
+      color: #fff;
+    }
+
+    ul {
+      padding: 80px 40px 40px;
+      li {
+        a {
+          @include displayFlex(center, center);
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 21px;
+          color: var(--text-color);
+          position: relative;
+          padding: 30px;
+          &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 30%;
+            transform: translateX(-50%);
+            width: 51px;
+            height: 2px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background-color: var(--text-color);
+          }
+        }
+        &:hover a::before {
+          opacity: 1;
+        }
       }
     }
-    &.active {
-      i.sun {
-        opacity: 1;
-        pointer-events: auto;
+
+    .btn-write {
+      @include displayFlex(center, center);
+      .nav__button {
+        padding: 10px 60px;
       }
-      i.moon {
-        opacity: 0;
-        pointer-events: none;
+    }
+
+    .social-links {
+      @include displayFlex(center, center);
+      color: #fff;
+      font-size: 30px;
+      padding-top: 70px;
+      gap: 30px;
+      i {
+        cursor: pointer;
       }
     }
   }
+}
+
+@media only screen and (max-width: 767px) {
+  .nav {
+    &__pc,
+    &__button-group {
+      display: none;
+    }
+
+    &__icon-bar {
+      display: block;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
 }

@@ -25,11 +25,12 @@
   <body>
     <nav class="nav">
       <div class="nav__container">
+        <!-- logo -->
         <span class="nav__logo">
-          <a class="nav__logo__link" href="#"> <strong>Blog</strong> Web </a>
+          <a href="#" target="_blank"> <strong>Blog</strong> Web </a>
         </span>
-
-        <ul class="nav__menu">
+        <!-- menu in pc  -->
+        <ul class="nav__pc">
           <li>
             <a href="#" target="_blank">Home</a>
           </li>
@@ -43,15 +44,56 @@
             <a href="#" target="_blank">Contact</a>
           </li>
         </ul>
-
+        <!-- dark light button  -->
         <div class="nav__button-group">
-          <div class="nav__dark-light">
+          <div class="dark-light-mode">
             <i class="bx bx-moon moon"></i>
             <i class="bx bx-sun sun"></i>
           </div>
           <button class="nav__button">
             <span>write a blog</span>
           </button>
+        </div>
+        <!-- nav bar in mobile -->
+        <input type="checkbox" class="nav__input" id="nav__input" />
+        <label class="nav__icon-bar" for="nav__input">
+          <i class="bx bx-align-right"></i>
+        </label>
+        <!-- nav overlay  -->
+        <label class="nav__overlay" for="nav__input"></label>
+        <!-- menu in mobile  -->
+        <div class="nav__mobile">
+          <!-- icon close  -->
+          <label for="nav__input" class="nav__icon-close">
+            <i class="bx bx-x-circle"></i>
+          </label>
+          <!-- menu mobile  -->
+          <ul>
+            <li>
+              <a href="#" target="_blank">Home</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Service</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">About</a>
+            </li>
+            <li>
+              <a href="#" target="_blank">Contact</a>
+            </li>
+          </ul>
+          <!-- button to write  -->
+          <div class="btn-write">
+            <button class="nav__button">
+              <span>write a blog</span>
+            </button>
+          </div>
+          <!-- icon social  -->
+          <div class="social-links">
+            <i class="bx bxl-youtube"></i>
+            <i class="bx bxl-facebook"></i>
+            <i class="bx bxl-instagram-alt"></i>
+          </div>
         </div>
       </div>
     </nav>
