@@ -9,7 +9,7 @@
   left: 0;
   height: 72px;
   width: 100%;
-  background-color: var(--nav-color);
+  background-color: transparent;
 
   &__container {
     @include displayFlex(space-between, center);
@@ -20,7 +20,7 @@
   &__logo {
     font-size: 20px;
     a {
-      color: var(--text-color);
+      color: var(--green-color);
       text-transform: uppercase;
     }
   }
@@ -39,7 +39,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 21px;
-        color: var(--text-color);
+        color: var(--green-color);
         padding: 10px;
         &::before {
           content: "";
@@ -51,7 +51,7 @@
           height: 2px;
           opacity: 0;
           transition: all 0.3s ease;
-          background-color: #fff;
+          background-color: var(--green-color);
         }
       }
     }
@@ -66,7 +66,7 @@
       margin: 0 5px;
       i {
         position: absolute;
-        color: var(--text-color);
+        color: var(--green-color);
         font-size: 22px;
         cursor: pointer;
         transition: all 0.3s ease;
@@ -92,15 +92,15 @@
   &__button {
     @include displayFlex(center, center);
     padding: 10px 24px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--green-color);
     border-radius: 40px;
     background-color: transparent;
     cursor: pointer;
     &:hover {
-      border: 1px solid var(--border-hover-color);
-      background-color: var(--border-hover-color);
+      border: 1px solid var(--green-color);
+      background-color: var(--green-color);
       span {
-        color: var(--text-hover-color);
+        color: #dce9e2;
       }
     }
     span {
@@ -108,7 +108,7 @@
       font-size: 14px;
       line-height: 18px;
       text-transform: capitalize;
-      color: var(--text-color);
+      color: var(--green-color);
     }
   }
 
@@ -206,7 +206,35 @@
     }
   }
 }
+.nav.navbar-transparent {
+  background-color: var(--nav-color);
 
+  .nav__button-group .dark-light-mode i,
+  a,
+  .nav__button,
+  .nav__button span {
+    color: var(--white-color);
+  }
+
+  .nav__button {
+    border-color: var(--white-color);
+    &:hover {
+      border-color: var(--white-color);
+      background-color: var(--white-color);
+      span {
+        color: var(--green-color);
+      }
+    }
+  }
+}
+header {
+  background-color: #dce9e2;
+  height: 1000px;
+}
+footer {
+  background-color: #333;
+  height: 1000px;
+}
 @media only screen and (max-width: 767px) {
   .nav {
     &__pc,

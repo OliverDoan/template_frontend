@@ -22,3 +22,12 @@ window.onload = function () {
     }
   });
 };
+
+window.onscroll = function () {
+  const nav = document.querySelector(".nav");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    nav.classList.add("navbar-transparent");
+  } else {
+    nav.classList.remove("navbar-transparent");
+  }
+};
