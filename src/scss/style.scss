@@ -191,6 +191,12 @@
       @include displayFlex(center, center);
       .nav__button {
         padding: 10px 60px;
+        background: #fff;
+        &:hover {
+          background: var(--green-color);
+          color: var(--white-color);
+          border-color: #fff;
+        }
       }
     }
 
@@ -229,7 +235,7 @@
 }
 .header {
   background-color: #dce9e2;
-  padding: 72px 0;
+  padding: 72px 0 30px;
   &__container {
     display: flex;
     justify-content: center;
@@ -284,9 +290,29 @@
   }
 }
 
-footer {
-  background-color: #333;
-  height: 1000px;
+.footer {
+  background-color: #00856f;
+  // height: 268px;
+  &__container {
+    @include displayFlex(space-between, center);
+    padding-top: 60px;
+    padding-bottom: 60px;
+    color: #fff;
+  }
+  &__content {
+    h1 {
+      font-size: 30px;
+      margin-bottom: 16px;
+    }
+  }
+  &__social {
+    @include displayFlex(end, center);
+    i {
+      font-size: 30px;
+      cursor: pointer;
+      margin-left: 15px;
+    }
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -327,6 +353,15 @@ footer {
           text-align: center;
         }
       }
+    }
+  }
+  .footer {
+    &__content {
+      text-align: center;
+    }
+    &__social {
+      @include displayFlex(center, center);
+      padding-top: 40px;
     }
   }
 }
