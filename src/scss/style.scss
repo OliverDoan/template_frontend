@@ -19,9 +19,59 @@
 
   &__logo {
     font-size: 20px;
+    @include displayFlex(space-between, center);
+
     a {
       color: var(--green-color);
       text-transform: uppercase;
+      margin-right: 40px;
+    }
+    #custom-search-form {
+      button {
+        border: 0;
+        background: none;
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        border-style: none;
+        left: -28px;
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        z-index: 3;
+        i {
+          font-size: 22px;
+          cursor: pointer;
+          color: var(--green-color);
+        }
+        &:focus {
+          outline: none;
+          border-color: inherit;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .search-query {
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid var(--green-color);
+        color: var(--green-color);
+        padding-right: 20px;
+        font-style: italic;
+        &:focus {
+          outline: none;
+          color: var(--green-color);
+        }
+        &::placeholder {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 21px;
+          position: relative;
+          color: var(--green-color);
+        }
+      }
     }
   }
 
@@ -211,24 +261,24 @@
       }
     }
   }
-}
-.nav.navbar-transparent {
-  background-color: var(--nav-color);
+  &.navbar-transparent {
+    background-color: var(--nav-color);
 
-  .nav__button-group .dark-light-mode i,
-  a,
-  .nav__button,
-  .nav__button span {
-    color: var(--white-color);
-  }
+    .nav__button-group .dark-light-mode i,
+    a,
+    .nav__button,
+    .nav__button span {
+      color: var(--white-color);
+    }
 
-  .nav__button {
-    border-color: var(--white-color);
-    &:hover {
+    .nav__button {
       border-color: var(--white-color);
-      background-color: var(--white-color);
-      span {
-        color: var(--green-color);
+      &:hover {
+        border-color: var(--white-color);
+        background-color: var(--white-color);
+        span {
+          color: var(--green-color);
+        }
       }
     }
   }
@@ -323,7 +373,8 @@
       color: #00856f;
     }
     &__pc,
-    &__button-group {
+    &__button-group,
+    #custom-search-form {
       display: none;
     }
 
