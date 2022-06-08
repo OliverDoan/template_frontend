@@ -2,6 +2,7 @@
 @import "./mixin";
 @import "./variable";
 @import "./common";
+@import "./card";
 // nav
 .nav {
   position: fixed;
@@ -339,7 +340,10 @@
     }
   }
 }
-
+.blogs {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
 .footer {
   background-color: #00856f;
   // height: 268px;
