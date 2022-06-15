@@ -1,25 +1,25 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-// // Change Form Login, Form Register, Form Forgot Password
-// const tabs = $$(".button-box .toggle-btn");
-// const tabActive = $(".button-box .toggle-btn.active");
-// const panes = $$(".form-box .tab-pane");
-// const line = $(".button-box .line");
+// Change Form Login, Form Register, Form Forgot Password
+const tabs = $$(".button-box .toggle-btn");
+const tabActive = $(".button-box .toggle-btn.active");
+const panes = $$(".form-box .tab-pane");
+const line = $(".button-box .line");
 
-// line.style.left = tabActive.offsetLeft + "px";
+line.style.left = tabActive.offsetLeft + "px";
 
-// tabs.forEach((tab, index) => {
-//   const pane = panes[index];
-//   tab.onclick = function () {
-//     $(".button-box .toggle-btn.active").classList.remove("active");
-//     $(".tab-pane.active").classList.remove("active");
+tabs.forEach((tab, index) => {
+  const pane = panes[index];
+  tab.onclick = function () {
+    $(".button-box .toggle-btn.active").classList.remove("active");
+    $(".tab-pane.active").classList.remove("active");
 
-//     line.style.left = this.offsetLeft + "px";
+    line.style.left = this.offsetLeft + "px";
 
-//     this.classList.add("active");
-//     pane.classList.add("active");
-//   };
-// });
+    this.classList.add("active");
+    pane.classList.add("active");
+  };
+});
 // ************************************************************************************************
 // Multi Step in form register
 const prevBtns = $$(".btn-prev");
@@ -67,6 +67,8 @@ function updateProgressbar() {
 }
 // Validate Step 1 in form register
 const formStep1 = $(".form-step-1");
+const formStep2 = $(".form-step-2");
+const formStep3 = $(".form-step-3");
 
 function showIconRemove() {
   displayIconRemove();
@@ -78,6 +80,8 @@ function displayIconRemove() {
   const valuePhone = $("#phone").value.trim();
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
+  const valueOTP = $("#number-otp").value.trim();
+
   if (valuePhone.length <= 0) {
     document
       .getElementsByClassName("input-group")[0]
@@ -107,12 +111,24 @@ function displayIconRemove() {
       .getElementsByClassName("input-group")[2]
       .classList.add("active-icon");
   }
+
+  if (valueOTP.length <= 0) {
+    document
+      .getElementsByClassName("input-group")[3]
+      .classList.remove("active-icon");
+  } else {
+    document
+      .getElementsByClassName("input-group")[3]
+      .classList.add("active-icon");
+  }
 }
 
 function removeValue() {
   const removePhone = $("#phone + .remove");
   const removeUsername = $("#username + .remove");
   const removeEmail = $("#email + .remove");
+  const removeOTP = $("#number-otp + .remove");
+
   removePhone.addEventListener("click", () => {
     document.querySelector("#phone").value = "";
     document
@@ -136,12 +152,21 @@ function removeValue() {
       .classList.remove("active-icon");
     $("#email").style.border = "1px solid #eaf0fd";
   });
+
+  removeOTP.addEventListener("click", () => {
+    document.querySelector("#number-otp").value = "";
+    document
+      .getElementsByClassName("input-group")[3]
+      .classList.remove("active-icon");
+    $("#number-otp").style.border = "1px solid #eaf0fd";
+  });
 }
 
 function changeBorder() {
   const valuePhone = $("#phone").value.trim();
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
+  const valueOTP = $("#number-otp").value.trim();
   $("#phone").style.border = valuePhone
     ? "1px solid #0979fd"
     : "1px solid #eaf0fd";
@@ -151,16 +176,21 @@ function changeBorder() {
   $("#email").style.border = valueEmail
     ? "1px solid #0979fd"
     : "1px solid #eaf0fd";
+  $("#number-otp").style.border = valueOTP
+    ? "1px solid #0979fd"
+    : "1px solid #eaf0fd";
 }
 
 function disabledButton() {
   const valuePhone = $("#phone").value.trim();
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
+  const valueOTP = $("#number-otp").value.trim();
+
   // let password = $("#password").value.trim();
   // let passwordConfirm = $("#password-confirm").value.trim();
   let btnSubmitStep1 = $("#btn-submit-step1");
-  // let btnSubmitStep2 = $(".form-step-3 #btn");
+  let btnSubmitStep2 = $("#btn-submit-step2");
   let booleanCheckbox = $("#policy").checked;
   if (
     valuePhone !== "" &&
@@ -172,12 +202,33 @@ function disabledButton() {
   } else {
     btnSubmitStep1.setAttribute("disabled", true);
   }
+  if (valueOTP) {
+    btnSubmitStep2.removeAttribute("disabled");
+  } else {
+    btnSubmitStep2.setAttribute("disabled", true);
+  }
+  console.log(">>>OTP: " + valueOTP);
 }
 
 formStep1.addEventListener("submit", (e) => {
   e.preventDefault();
   checkValidate();
 });
+formStep2.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // checkValidate();
+  const valueOTP = $("#number-otp").value.trim();
+  if (valueOTP.length > 0) {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  }
+});
+// formStep1.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   checkValidate();
+// });
+
 let booleanCheckValidatePhone = false;
 let booleanCheckValidateUsername = false;
 let booleanCheckValidateEmail = false;

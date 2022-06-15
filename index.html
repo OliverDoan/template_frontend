@@ -52,7 +52,7 @@
           </div>
           <!-- Steps -->
           <!---------------------------- form-step-1---------------------------->
-          <form class="form-step form-step-active form-step-1">
+          <form class="form-step form-step-1 form-step-active">
             <span class="sub-title-form">Nhập thông tin đăng ký</span>
             <div class="input-group">
               <div class="input-group-small">
@@ -110,18 +110,6 @@
                 >
               </label>
             </div>
-            <!-- <div class="btns-group">
-              <button
-                href="#"
-                class="btn btn-next"
-                id="btn-submit-step1"
-                disabled
-              >
-                Tiếp theo
-                <img src="./src/images/icon_arrow_right.svg" alt="" srcset="" />
-              </button>
-              <a href="#" class="btn-prev">Quay lại</a>
-            </div> -->
             <div class="">
               <button id="btn-submit-step1" class="btn btn-submit" disabled>
                 Tiếp theo
@@ -137,24 +125,37 @@
               <strong class="last-four-number"> ••••• •456</strong>
             </p>
             <div class="input-group">
-              <input
-                type="text"
-                name="number-otp"
-                id="number-otp"
-                placeholder="Nhập mã OTP"
-              />
+              <div class="input-group-small">
+                <input
+                  type="text"
+                  name="number-otp"
+                  id="number-otp"
+                  placeholder="Nhập mã OTP"
+                  oninput="showIconRemove()"
+                />
+                <span class="remove"
+                  ><img src="./src/images/icon-remove.svg" alt=""
+                /></span>
+              </div>
             </div>
             <div class="resend">
               <span class="resend-title">Gửi lại</span>
               <span class="resend-time"> 00:35 giây</span>
             </div>
             <div class="btns-group">
+              <button id="btn-submit-step2" class="btn btn-submit" disabled>
+                Xác thực
+                <img src="./src/images/icon_arrow_right.svg" alt="" srcset="" />
+              </button>
+              <a href="#" class="btn-prev">Quay lại</a>
+            </div>
+            <!-- <div class="btns-group">
               <a href="#" class="btn btn-next ml-auto"
-                >Tiếp theo
+                >Xác thực
                 <img src="./src/images/icon_arrow_right.svg" alt="" srcset=""
               /></a>
               <a href="#" class="btn-prev">Quay lại</a>
-            </div>
+            </div> -->
           </form>
           <!---------------------------- form-step-3 ---------------------------->
           <form class="form-step form-step-3">
