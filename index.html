@@ -7,9 +7,11 @@
     <title>Main</title>
     <link rel="stylesheet" href="./src/css/main.css" />
   </head>
-  <body>
+  <body class="bg-form-input">
     <div class="list-all-form">
-      <img src="./src/images/logo.png" alt="" class="form-logo" />
+      <div class="form-logo">
+        <img src="./src/images/logo.png" alt="" class="form-logo" />
+      </div>
       <div class="form-box">
         <div class="button-box-big">
           <!-- button-box -->
@@ -60,7 +62,7 @@
                   type="text"
                   id="phone"
                   placeholder="Số điện thoại *"
-                  oninput="showIconRemove()"
+                  oninput="showIcon()"
                 />
                 <span class="remove"
                   ><img src="./src/images/icon-remove.svg" alt=""
@@ -74,7 +76,7 @@
                   type="text"
                   id="username"
                   placeholder="Họ & tên người đại diện *"
-                  oninput="showIconRemove()"
+                  oninput="showIcon()"
                 />
                 <span class="remove"
                   ><img src="./src/images/icon-remove.svg" alt=""
@@ -88,7 +90,7 @@
                   type="text"
                   id="email"
                   placeholder="Email *"
-                  oninput="showIconRemove()"
+                  oninput="showIcon()"
                 />
                 <span class="remove"
                   ><img src="./src/images/icon-remove.svg" alt=""
@@ -131,7 +133,7 @@
                   name="number-otp"
                   id="number-otp"
                   placeholder="Nhập mã OTP"
-                  oninput="showIconRemove()"
+                  oninput="showIcon()"
                 />
                 <span class="remove"
                   ><img src="./src/images/icon-remove.svg" alt=""
@@ -162,54 +164,60 @@
             <span class="sub-title-form">Nhập mật khẩu bảo mật</span>
             <ul class="lists-condition-password">
               <li>
-                <span class="circle eight-character"></span>Độ dài tối thiểu 8
-                ký tự
+                <span class="circle eight-character"></span>
+                Độ dài tối thiểu 8 ký tự
               </li>
               <li>
-                <span class="circle low-upper-case"></span>Gồm chữ cái thường,
-                chữ cái HOA
+                <span class="circle low-upper-case"></span>
+                Gồm chữ cái thường, chữ cái HOA
               </li>
               <li>
-                <span class="circle one-special-char"></span>Ít nhất 1 ký tự đặc
-                biệt.
+                <span class="circle one-special-char"></span>
+                Ít nhất 1 ký tự đặc biệt.
               </li>
             </ul>
             <div class="input-group">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Mật khẩu *"
-                onkeyup="showIcon();isEmpty();"
-              />
-              <span class="show-pass" onclick="showPassWord()">
-                <img src="./src/images/icon-eye.svg" alt="" id="icon-eye" />
-                <img
-                  src="./src/images/icon-eye-hidden.svg"
-                  alt=""
-                  id="icon-eye-hidden"
+              <div class="input-group-small">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Mật khẩu *"
+                  oninput="showIcon()"
+                  onkeyup="checkStrengthPass()"
                 />
-              </span>
+                <span class="show-pass" onclick="showPassWord()">
+                  <img src="./src/images/icon-eye.svg" alt="" id="icon-eye" />
+                  <img
+                    src="./src/images/icon-eye-hidden.svg"
+                    alt=""
+                    id="icon-eye-hidden"
+                  />
+                </span>
+              </div>
             </div>
             <div class="input-group">
-              <input
-                type="password"
-                name="password-confirm"
-                id="password-confirm"
-                placeholder="Xác nhận mật khẩu *"
-                onkeyup="showIcon();isEmpty();"
-              />
-              <span class="show-pass" onclick="showConfirmPassWord()">
-                <img src="./src/images/icon-eye.svg" alt="" id="icon-eye2" />
-                <img
-                  src="./src/images/icon-eye-hidden.svg"
-                  alt=""
-                  id="icon-eye-hidden2"
+              <div class="input-group-small">
+                <input
+                  type="password"
+                  name="password-confirm"
+                  id="password-confirm"
+                  placeholder="Xác nhận mật khẩu *"
+                  oninput="showIcon()"
                 />
-              </span>
+                <span class="show-pass" onclick="showConfirmPassWord()">
+                  <img src="./src/images/icon-eye.svg" alt="" id="icon-eye2" />
+                  <img
+                    src="./src/images/icon-eye-hidden.svg"
+                    alt=""
+                    id="icon-eye-hidden2"
+                  />
+                </span>
+              </div>
+              <small>Error message</small>
             </div>
             <div class="btns-group">
-              <button id="btn" class="btn btn-submit" disabled>
+              <button id="btn-submit-step3" class="btn btn-submit" disabled>
                 Tạo tài khoản
               </button>
             </div>

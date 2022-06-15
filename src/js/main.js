@@ -1,6 +1,6 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-// Change Form Login, Form Register, Form Forgot Password
+// -------------------------------------Change Form Login, Form Register, Form Forgot Password
 const tabs = $$(".button-box .toggle-btn");
 const tabActive = $(".button-box .toggle-btn.active");
 const panes = $$(".form-box .tab-pane");
@@ -20,8 +20,8 @@ tabs.forEach((tab, index) => {
     pane.classList.add("active");
   };
 });
-// ************************************************************************************************
-// Multi Step in form register
+
+// -------------------------------------Change Step in form register
 const prevBtns = $$(".btn-prev");
 const nextBtns = $$(".btn-next");
 const progress = $("#progress");
@@ -65,12 +65,12 @@ function updateProgressbar() {
     }
   });
 }
-// Validate Step 1 in form register
+// -------------------------------------Validate Step 1 in form register
 const formStep1 = $(".form-step-1");
 const formStep2 = $(".form-step-2");
 const formStep3 = $(".form-step-3");
-
-function showIconRemove() {
+// feature check value input when typing
+function showIcon() {
   displayIconRemove();
   removeValue();
   changeBorder();
@@ -81,6 +81,8 @@ function displayIconRemove() {
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
   const valueOTP = $("#number-otp").value.trim();
+  const valuePassword = $("#password").value.trim();
+  const valuePasswordConfirm = $("#password-confirm").value.trim();
 
   if (valuePhone.length <= 0) {
     document
@@ -119,6 +121,26 @@ function displayIconRemove() {
   } else {
     document
       .getElementsByClassName("input-group")[3]
+      .classList.add("active-icon");
+  }
+
+  if (valuePassword.length <= 0) {
+    document
+      .getElementsByClassName("input-group")[4]
+      .classList.remove("active-icon");
+  } else {
+    document
+      .getElementsByClassName("input-group")[4]
+      .classList.add("active-icon");
+  }
+
+  if (valuePasswordConfirm.length <= 0) {
+    document
+      .getElementsByClassName("input-group")[5]
+      .classList.remove("active-icon");
+  } else {
+    document
+      .getElementsByClassName("input-group")[5]
       .classList.add("active-icon");
   }
 }
@@ -167,6 +189,8 @@ function changeBorder() {
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
   const valueOTP = $("#number-otp").value.trim();
+  const valuePassword = $("#password").value.trim();
+  const valuePasswordConfirm = $("#password-confirm").value.trim();
   $("#phone").style.border = valuePhone
     ? "1px solid #0979fd"
     : "1px solid #eaf0fd";
@@ -179,6 +203,12 @@ function changeBorder() {
   $("#number-otp").style.border = valueOTP
     ? "1px solid #0979fd"
     : "1px solid #eaf0fd";
+  $("#password").style.border = valuePassword
+    ? "1px solid #0979fd"
+    : "1px solid #eaf0fd";
+  $("#password-confirm").style.border = valuePasswordConfirm
+    ? "1px solid #0979fd"
+    : "1px solid #eaf0fd";
 }
 
 function disabledButton() {
@@ -187,10 +217,11 @@ function disabledButton() {
   const valueEmail = $("#email").value.trim();
   const valueOTP = $("#number-otp").value.trim();
 
-  // let password = $("#password").value.trim();
-  // let passwordConfirm = $("#password-confirm").value.trim();
+  let valuePassword = $("#password").value.trim();
+  let valuePasswordConfirm = $("#password-confirm").value.trim();
   let btnSubmitStep1 = $("#btn-submit-step1");
   let btnSubmitStep2 = $("#btn-submit-step2");
+  let btnSubmitStep3 = $("#btn-submit-step3");
   let booleanCheckbox = $("#policy").checked;
   if (
     valuePhone !== "" &&
@@ -202,36 +233,30 @@ function disabledButton() {
   } else {
     btnSubmitStep1.setAttribute("disabled", true);
   }
-  if (valueOTP) {
+  if (valueOTP !== "") {
     btnSubmitStep2.removeAttribute("disabled");
   } else {
     btnSubmitStep2.setAttribute("disabled", true);
   }
-  console.log(">>>OTP: " + valueOTP);
-}
-
-formStep1.addEventListener("submit", (e) => {
-  e.preventDefault();
-  checkValidate();
-});
-formStep2.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // checkValidate();
-  const valueOTP = $("#number-otp").value.trim();
-  if (valueOTP.length > 0) {
-    formStepsNum++;
-    updateFormSteps();
-    updateProgressbar();
+  if (
+    valuePassword !== "" &&
+    valuePasswordConfirm !== "" &&
+    booleanLowerUpperCase === true &&
+    booleanSpecialChar === true &&
+    booleanEightChar === true
+  ) {
+    btnSubmitStep3.removeAttribute("disabled");
+  } else {
+    btnSubmitStep3.setAttribute("disabled", true);
   }
-});
-// formStep1.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   checkValidate();
-// });
-
+}
+// check validate input when submit
 let booleanCheckValidatePhone = false;
 let booleanCheckValidateUsername = false;
 let booleanCheckValidateEmail = false;
+let booleanLowerUpperCase = false;
+let booleanSpecialChar = false;
+let booleanEightChar = false;
 function checkValidate() {
   validatePhoneNumber();
   validateUsername();
@@ -299,89 +324,111 @@ function validateEmail() {
 }
 
 function setErrorFor(input, message) {
-  const formControl = input.parentElement.parentElement; //.input-group
-  const small = formControl.querySelector("small");
-  formControl.classList.add("error");
+  console.log(input);
+  const inputGroup = input.parentElement.parentElement;
+  const small = inputGroup.querySelector("small");
+  inputGroup.classList.add("error");
   small.innerText = message;
 }
 
 function setSuccessFor(input) {
-  const formControl = input.parentElement.parentElement; //.input-group
-  formControl.classList.add("success");
-  formControl.classList.contains("error") &&
-    formControl.classList.remove("error");
+  const inputGroup = input.parentElement.parentElement;
+  inputGroup.classList.add("success");
+  inputGroup.classList.contains("error") &&
+    inputGroup.classList.remove("error");
+}
+// Submit Step 1
+formStep1.addEventListener("submit", (e) => {
+  e.preventDefault();
+  checkValidate();
+});
+// Submit Step 2
+formStep2.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const valueOTP = $("#number-otp").value.trim();
+  if (valueOTP.length > 0) {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  }
+});
+// Submit Step 3
+formStep3.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const valuePassword = $("#password").value.trim();
+  const valuePasswordConfirm = $("#password-confirm").value.trim();
+  const passwordConfirm = $("#password-confirm");
+
+  if (valuePasswordConfirm !== valuePassword) {
+    setErrorFor(passwordConfirm, "Mật khẩu không trùng nhau");
+  } else {
+    setSuccessFor(passwordConfirm);
+  }
+});
+// -------------------------------------Validate Step 3 in form register
+
+// Show password field
+function showPassWord() {
+  let x = $(".input-group #password");
+  let y = $("#icon-eye");
+  let z = $("#icon-eye-hidden");
+
+  if (x.type === "password") {
+    x.type = "text";
+    y.style.display = "none";
+    z.style.display = "block";
+  } else {
+    x.type = "password";
+
+    y.style.display = "block";
+    z.style.display = "none";
+  }
+}
+function showConfirmPassWord() {
+  let x = $(".input-group #password-confirm");
+  let y = $("#icon-eye2");
+  let z = $("#icon-eye-hidden2");
+
+  if (x.type === "password") {
+    x.type = "text";
+    y.style.display = "none";
+    z.style.display = "block";
+  } else {
+    x.type = "password";
+
+    y.style.display = "block";
+    z.style.display = "none";
+  }
 }
 
-// // Show password field
-// function showPassWord() {
-//   let x = $(".input-group #password");
-//   let y = $("#icon-eye");
-//   let z = $("#icon-eye-active-icon");
+function checkStrengthPass() {
+  let lowerUpperCase = $(".low-upper-case");
+  let specialChar = $(".one-special-char");
+  let eightChar = $(".eight-character");
+  let password = $("#password");
+  let valuePassword = password.value.trim();
 
-//   if (x.type === "password") {
-//     x.type = "text";
-//     y.style.display = "none";
-//     z.style.display = "block";
-//   } else {
-//     x.type = "password";
+  // If password contains lower and upper case character
+  if (valuePassword.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+    booleanLowerUpperCase = true;
+    lowerUpperCase.style.backgroundColor = "#00CB51";
+  } else {
+    lowerUpperCase.style.backgroundColor = "#d6dff6";
+  }
 
-//     y.style.display = "block";
-//     z.style.display = "none";
-//   }
-// }
-// function showConfirmPassWord() {
-//   let x = $(".input-group #password-confirm");
-//   let y = $("#icon-eye2");
-//   let z = $("#icon-eye-hidden2");
-//   let z2 = document.querySelector("#icon-eye-hidden2");
+  // If password has one special character
+  if (valuePassword.match(/([!,@,#,$,%,^,&,*,_,~,(,)])/)) {
+    booleanSpecialChar = true;
+    specialChar.style.backgroundColor = "#00CB51";
+  } else {
+    specialChar.style.backgroundColor = "#d6dff6";
+  }
 
-//   if (x.type === "password") {
-//     x.type = "text";
-//     y.style.display = "none";
-//     z.style.display = "block";
-//   } else {
-//     x.type = "password";
-
-//     y.style.display = "block";
-//     z.style.display = "none";
-//   }
-// }
-
-// // Validate Step 3 in form register
-// let lowerUpperCase = $(".low-upper-case");
-// let specialChar = $(".one-special-char");
-// let eightChar = $(".eight-character");
-// let numberCondition = 0;
-// password.addEventListener("keyup", function () {
-//   let pass = password.value;
-//   checkStrength(pass);
-// });
-
-// var booleanlowerUpperCase = false;
-// var booleanspecialChar = false;
-// var booleaneightChar = false;
-// function checkStrength(password) {
-//   // If password contains lower and upper case character
-//   if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-//     booleanlowerUpperCase = true;
-//     lowerUpperCase.style.backgroundColor = "#00CB51";
-//   } else {
-//     lowerUpperCase.style.backgroundColor = "#d6dff6";
-//   }
-
-//   // If password has one special character
-//   if (password.match(/([!,@,#,$,%,^,&,*,_,~,(,)])/)) {
-//     booleanspecialChar = true;
-//     specialChar.style.backgroundColor = "#00CB51";
-//   } else {
-//     specialChar.style.backgroundColor = "#d6dff6";
-//   }
-
-//   // If password is more than 7
-//   if (password.length > 7) {
-//     booleaneightChar = true;
-//     eightChar.style.backgroundColor = "#00CB51";
-//   } else {
-//     eightChar.style.backgroundColor = "#d6dff6";
-//   }
-// }
+  // If password is more than 7
+  if (valuePassword.length > 7) {
+    booleanEightChar = true;
+    eightChar.style.backgroundColor = "#00CB51";
+  } else {
+    eightChar.style.backgroundColor = "#d6dff6";
+  }
+}
