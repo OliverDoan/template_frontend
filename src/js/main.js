@@ -211,52 +211,11 @@ function changeBorder() {
     : "1px solid #eaf0fd";
 }
 
-function disabledButton() {
-  const valuePhone = $("#phone").value.trim();
-  const valueUsername = $("#username").value.trim();
-  const valueEmail = $("#email").value.trim();
-  const valueOTP = $("#number-otp").value.trim();
-
-  let valuePassword = $("#password").value.trim();
-  let valuePasswordConfirm = $("#password-confirm").value.trim();
-  let btnSubmitStep1 = $("#btn-submit-step1");
-  let btnSubmitStep2 = $("#btn-submit-step2");
-  let btnSubmitStep3 = $("#btn-submit-step3");
-  let booleanCheckbox = $("#policy").checked;
-  if (
-    valuePhone !== "" &&
-    valueUsername !== "" &&
-    valueEmail !== "" &&
-    booleanCheckbox === true
-  ) {
-    btnSubmitStep1.removeAttribute("disabled");
-  } else {
-    btnSubmitStep1.setAttribute("disabled", true);
-  }
-  if (valueOTP !== "") {
-    btnSubmitStep2.removeAttribute("disabled");
-  } else {
-    btnSubmitStep2.setAttribute("disabled", true);
-  }
-  if (
-    valuePassword !== "" &&
-    valuePasswordConfirm !== "" &&
-    booleanLowerUpperCase === true &&
-    booleanSpecialChar === true &&
-    booleanEightChar === true
-  ) {
-    btnSubmitStep3.removeAttribute("disabled");
-  } else {
-    btnSubmitStep3.setAttribute("disabled", true);
-  }
-}
+// oncopy="return false"
+// oncut="return false"
+// onpaste="return false"
 // check validate input when submit
-let booleanCheckValidatePhone = false;
-let booleanCheckValidateUsername = false;
-let booleanCheckValidateEmail = false;
-let booleanLowerUpperCase = false;
-let booleanSpecialChar = false;
-let booleanEightChar = false;
+
 function checkValidate() {
   validatePhoneNumber();
   validateUsername();
@@ -324,7 +283,7 @@ function validateEmail() {
 }
 
 function setErrorFor(input, message) {
-  console.log(input);
+  // console.log(input);
   const inputGroup = input.parentElement.parentElement;
   const small = inputGroup.querySelector("small");
   inputGroup.classList.add("error");
@@ -363,44 +322,56 @@ formStep3.addEventListener("submit", (e) => {
     setErrorFor(passwordConfirm, "Mật khẩu không trùng nhau");
   } else {
     setSuccessFor(passwordConfirm);
+    modelOpen();
+    console.log("Thành công");
   }
 });
 // -------------------------------------Validate Step 3 in form register
 
 // Show password field
 function showPassWord() {
-  let x = $(".input-group #password");
-  let y = $("#icon-eye");
-  let z = $("#icon-eye-hidden");
+  let elementPassword = $(".input-group #password");
+  let iconEye = $("#icon-eye");
+  let iconEyeHidden = $("#icon-eye-hidden");
 
-  if (x.type === "password") {
-    x.type = "text";
-    y.style.display = "none";
-    z.style.display = "block";
+  if (elementPassword.type === "password") {
+    elementPassword.type = "text";
+    iconEye.style.display = "none";
+    iconEyeHidden.style.display = "block";
   } else {
-    x.type = "password";
-
-    y.style.display = "block";
-    z.style.display = "none";
+    elementPassword.type = "password";
+    iconEye.style.display = "block";
+    iconEyeHidden.style.display = "none";
   }
 }
 function showConfirmPassWord() {
-  let x = $(".input-group #password-confirm");
-  let y = $("#icon-eye2");
-  let z = $("#icon-eye-hidden2");
+  let elementPasswordConfirm = $(".input-group #password-confirm");
+  let iconEye = $("#icon-eye2");
+  let iconEyeHidden = $("#icon-eye-hidden2");
 
-  if (x.type === "password") {
-    x.type = "text";
-    y.style.display = "none";
-    z.style.display = "block";
+  if (elementPasswordConfirm.type === "password") {
+    elementPasswordConfirm.type = "text";
+    iconEye.style.display = "none";
+    iconEyeHidden.style.display = "block";
   } else {
-    x.type = "password";
-
-    y.style.display = "block";
-    z.style.display = "none";
+    elementPasswordConfirm.type = "password";
+    iconEye.style.display = "block";
+    iconEyeHidden.style.display = "none";
   }
 }
+function modelOpen() {
+  $(".custom-model-main").classList.add("model-open");
+}
+function modelClose() {
+  $(".custom-model-main").classList.remove("model-open");
+}
 
+let booleanCheckValidatePhone = false;
+let booleanCheckValidateUsername = false;
+let booleanCheckValidateEmail = false;
+let booleanLowerUpperCase = false;
+let booleanSpecialChar = false;
+let booleanEightChar = false;
 function checkStrengthPass() {
   let lowerUpperCase = $(".low-upper-case");
   let specialChar = $(".one-special-char");
@@ -413,6 +384,7 @@ function checkStrengthPass() {
     booleanLowerUpperCase = true;
     lowerUpperCase.style.backgroundColor = "#00CB51";
   } else {
+    booleanLowerUpperCase = false;
     lowerUpperCase.style.backgroundColor = "#d6dff6";
   }
 
@@ -421,6 +393,7 @@ function checkStrengthPass() {
     booleanSpecialChar = true;
     specialChar.style.backgroundColor = "#00CB51";
   } else {
+    booleanSpecialChar = false;
     specialChar.style.backgroundColor = "#d6dff6";
   }
 
@@ -429,6 +402,85 @@ function checkStrengthPass() {
     booleanEightChar = true;
     eightChar.style.backgroundColor = "#00CB51";
   } else {
+    booleanEightChar = false;
     eightChar.style.backgroundColor = "#d6dff6";
   }
+}
+
+function disabledButton() {
+  // console.log(">>>Disable");
+  const valuePhone = $("#phone").value.trim();
+  const valueUsername = $("#username").value.trim();
+  const valueEmail = $("#email").value.trim();
+  const valueOTP = $("#number-otp").value.trim();
+
+  const valuePassword = $("#password").value.trim();
+  const valuePasswordConfirm = $("#password-confirm").value.trim();
+  const btnSubmitStep1 = $("#btn-submit-step1");
+  const btnSubmitStep2 = $("#btn-submit-step2");
+  const btnSubmitStep3 = $("#btn-submit-step3");
+  const booleanCheckbox = $("#policy").checked;
+  const iconCheck = $(".checkbox-group");
+
+  if (booleanCheckbox === true) {
+    iconCheck.classList.add("active");
+  } else {
+    iconCheck.classList.remove("active");
+  }
+  // Disable buttons submit step 1
+  if (
+    valuePhone !== "" &&
+    valueUsername !== "" &&
+    valueEmail !== "" &&
+    booleanCheckbox === true
+  ) {
+    btnSubmitStep1.removeAttribute("disabled");
+  } else {
+    btnSubmitStep1.setAttribute("disabled", true);
+  }
+  // Disable buttons submit step 1
+  if (valueOTP !== "") {
+    btnSubmitStep2.removeAttribute("disabled");
+  } else {
+    btnSubmitStep2.setAttribute("disabled", true);
+  }
+  // Disable buttons submit step 3
+  if (
+    valuePassword !== "" &&
+    valuePasswordConfirm !== "" &&
+    booleanLowerUpperCase === true &&
+    booleanSpecialChar === true &&
+    booleanEightChar === true
+  ) {
+    btnSubmitStep3.removeAttribute("disabled");
+  } else {
+    btnSubmitStep3.setAttribute("disabled", true);
+  }
+}
+
+function onlyNumberKey(evt) {
+  // Only ASCII character in that range allowed
+  var ASCIICode = evt.which ? evt.which : evt.keyCode;
+  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) return false;
+  return true;
+}
+
+function validateOTP() {
+  var myTimer,
+    timing = String(60).padStart(2, "0");
+  $("#timing").innerHTML = timing;
+  $("#begin").setAttribute("disabled", true);
+  $("#begin").style.color = "#8e9abb";
+  myTimer = setInterval(function () {
+    --timing;
+    seconds = String(timing).padStart(2, "0");
+    $("#timing").innerHTML = seconds;
+
+    if (timing === 0) {
+      clearInterval(myTimer);
+      $("#begin").removeAttribute("disabled");
+      $("#begin").style.color = "#0979fd";
+      // $("#timing").innerHTML = 60;
+    }
+  }, 100);
 }

@@ -8,227 +8,280 @@
     <link rel="stylesheet" href="./src/css/main.css" />
   </head>
   <body class="bg-form-input">
-    <div class="list-all-form">
-      <div class="form-logo">
-        <img src="./src/images/logo.png" alt="" class="form-logo" />
-      </div>
-      <div class="form-box">
-        <div class="button-box-big">
-          <!-- button-box -->
-          <div class="button-box">
-            <div class="line"></div>
-            <button type="button" class="toggle-btn">Đăng nhập</button>
-            <button type="button" class="toggle-btn active">Đăng ký</button>
-            <button type="button" class="toggle-btn">Khôi phục</button>
-          </div>
+    <div class="container-form-group">
+      <div class="list-all-form">
+        <div class="form-logo">
+          <img src="./src/images/logo.png" alt="" class="form-logo" />
         </div>
-        <!-- Form Login  -->
-        <form id="login" class="tab-pane">
-          <h1>login</h1>
-        </form>
-        <!-- Form Register -->
-        <div
-          id="register"
-          class="tab-pane active form-register"
-          action="./login.html"
-        >
-          <!-- Progress bar -->
-          <div class="progressbar">
-            <div class="progress" id="progress"></div>
-            <div class="step step-active">
-              <div class="progress-step">
-                <span>1</span>
-              </div>
-              <div class="line2"></div>
-            </div>
-            <div class="step">
-              <div class="line2"></div>
-              <div class="progress-step"><span>2</span></div>
-              <div class="line2"></div>
-            </div>
-
-            <div class="step">
-              <div class="line2"></div>
-              <div class="progress-step"><span>3</span></div>
+        <div class="form-box">
+          <div class="button-box-big">
+            <!-- button-box -->
+            <div class="button-box">
+              <div class="line"></div>
+              <button type="button" class="toggle-btn">Đăng nhập</button>
+              <button type="button" class="toggle-btn active">Đăng ký</button>
+              <button type="button" class="toggle-btn">Khôi phục</button>
             </div>
           </div>
-          <!-- Steps -->
-          <!---------------------------- form-step-1---------------------------->
-          <form class="form-step form-step-1 form-step-active">
-            <span class="sub-title-form">Nhập thông tin đăng ký</span>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="text"
-                  id="phone"
-                  placeholder="Số điện thoại *"
-                  oninput="showIcon()"
-                />
-                <span class="remove"
-                  ><img src="./src/images/icon-remove.svg" alt=""
-                /></span>
+          <!-- Form Login  -->
+          <form id="login" class="tab-pane">
+            <h1>login</h1>
+          </form>
+          <!-- Form Register -->
+          <div
+            id="register"
+            class="tab-pane active form-register"
+            action="./login.html"
+          >
+            <!-- Progress bar -->
+            <div class="progressbar">
+              <div class="progress" id="progress"></div>
+              <div class="step step-active">
+                <div class="progress-step">
+                  <span>1</span>
+                </div>
+                <div class="line2"></div>
               </div>
-              <small>Error message</small>
-            </div>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="text"
-                  id="username"
-                  placeholder="Họ & tên người đại diện *"
-                  oninput="showIcon()"
-                />
-                <span class="remove"
-                  ><img src="./src/images/icon-remove.svg" alt=""
-                /></span>
+              <div class="step">
+                <div class="line2"></div>
+                <div class="progress-step"><span>2</span></div>
+                <div class="line2"></div>
               </div>
-              <small>Error message</small>
-            </div>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="text"
-                  id="email"
-                  placeholder="Email *"
-                  oninput="showIcon()"
-                />
-                <span class="remove"
-                  ><img src="./src/images/icon-remove.svg" alt=""
-                /></span>
+
+              <div class="step">
+                <div class="line2"></div>
+                <div class="progress-step"><span>3</span></div>
               </div>
-              <small>Error message</small>
             </div>
-            <div class="checkbox-group">
-              <input
-                type="checkbox"
-                name=""
-                id="policy"
-                onclick="disabledButton()"
-              />
-              <label for="policy">
-                Tôi đã đọc, đồng ý với
-                <a href=""
-                  >Điều khoản, điều kiện sử dụng ứng dụng và mở tài khoản.</a
+            <!-- Steps -->
+            <!---------------------------- form-step-1---------------------------->
+            <form class="form-step form-step-1 form-step-active">
+              <span class="sub-title-form">Nhập thông tin đăng ký</span>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="text"
+                    id="phone"
+                    placeholder="Số điện thoại *"
+                    oninput="showIcon()"
+                  />
+
+                  <span class="remove"
+                    ><img src="./src/images/icon-remove.svg" alt=""
+                  /></span>
+                </div>
+                <small>Error message</small>
+              </div>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="text"
+                    id="username"
+                    placeholder="Họ & tên *"
+                    oninput="showIcon()"
+                  />
+                  <span class="remove"
+                    ><img src="./src/images/icon-remove.svg" alt=""
+                  /></span>
+                </div>
+                <small>Error message</small>
+              </div>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="text"
+                    id="email"
+                    placeholder="Email *"
+                    oninput="showIcon()"
+                  />
+                  <span class="remove"
+                    ><img src="./src/images/icon-remove.svg" alt=""
+                  /></span>
+                </div>
+                <small>Error message</small>
+              </div>
+              <div class="checkbox-group">
+                <input
+                  type="checkbox"
+                  name=""
+                  id="policy"
+                  onclick="disabledButton()"
+                />
+                <label for="policy" class="checkbox-custom">
+                  <img
+                    src="./src/images/icon-tick.svg"
+                    alt=""
+                    class="icon-check"
+                  />
+                </label>
+                <label for="policy">
+                  Tôi đã đọc, đồng ý với
+                  <a href=""
+                    >Điều khoản, điều kiện sử dụng ứng dụng và mở tài khoản.</a
+                  >
+                </label>
+              </div>
+              <div class="">
+                <button id="btn-submit-step1" class="btn btn-submit" disabled>
+                  Tiếp theo
+                  <img
+                    src="./src/images/icon_arrow_right.svg"
+                    alt=""
+                    srcset=""
+                  />
+                </button>
+              </div>
+            </form>
+            <!---------------------------- form-step-2 ---------------------------->
+            <form class="form-step form-step-2">
+              <span class="sub-title-form">Xác thực OTP SMS</span>
+              <p class="last-number">
+                Mã OTP gồm 6 chữ số đã được gửi về <br />số điện thoại
+                <strong class="last-four-number"> ••••••456</strong>
+              </p>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="text"
+                    name="number-otp"
+                    id="number-otp"
+                    placeholder="Nhập mã OTP"
+                    oninput="showIcon()"
+                    onkeypress="return onlyNumberKey(event)"
+                    maxlength="6"
+                  />
+                  <span class="remove"
+                    ><img src="./src/images/icon-remove.svg" alt=""
+                  /></span>
+                </div>
+              </div>
+              <div class="resend">
+                <button class="resend-title" id="begin" onclick="validateOTP()">
+                  Gửi lại
+                </button>
+                <span class="resend-time" id="exampleElement">
+                  00:<span id="timing">60</span> giây</span
                 >
-              </label>
-            </div>
-            <div class="">
-              <button id="btn-submit-step1" class="btn btn-submit" disabled>
-                Tiếp theo
-                <img src="./src/images/icon_arrow_right.svg" alt="" srcset="" />
-              </button>
-            </div>
-          </form>
-          <!---------------------------- form-step-2 ---------------------------->
-          <form class="form-step form-step-2">
-            <span class="sub-title-form">Xác thực OTP SMS</span>
-            <p class="last-number">
-              Mã OTP gồm 6 chữ số đã được gửi về <br />số điện thoại
-              <strong class="last-four-number"> ••••• •456</strong>
-            </p>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="text"
-                  name="number-otp"
-                  id="number-otp"
-                  placeholder="Nhập mã OTP"
-                  oninput="showIcon()"
-                />
-                <span class="remove"
-                  ><img src="./src/images/icon-remove.svg" alt=""
-                /></span>
               </div>
-            </div>
-            <div class="resend">
-              <span class="resend-title">Gửi lại</span>
-              <span class="resend-time"> 00:35 giây</span>
-            </div>
-            <div class="btns-group">
-              <button id="btn-submit-step2" class="btn btn-submit" disabled>
-                Xác thực
-                <img src="./src/images/icon_arrow_right.svg" alt="" srcset="" />
-              </button>
-              <a href="#" class="btn-prev">Quay lại</a>
-            </div>
-            <!-- <div class="btns-group">
-              <a href="#" class="btn btn-next ml-auto"
-                >Xác thực
-                <img src="./src/images/icon_arrow_right.svg" alt="" srcset=""
-              /></a>
-              <a href="#" class="btn-prev">Quay lại</a>
-            </div> -->
-          </form>
-          <!---------------------------- form-step-3 ---------------------------->
-          <form class="form-step form-step-3">
-            <span class="sub-title-form">Nhập mật khẩu bảo mật</span>
-            <ul class="lists-condition-password">
-              <li>
-                <span class="circle eight-character"></span>
-                Độ dài tối thiểu 8 ký tự
-              </li>
-              <li>
-                <span class="circle low-upper-case"></span>
-                Gồm chữ cái thường, chữ cái HOA
-              </li>
-              <li>
-                <span class="circle one-special-char"></span>
-                Ít nhất 1 ký tự đặc biệt.
-              </li>
-            </ul>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Mật khẩu *"
-                  oninput="showIcon()"
-                  onkeyup="checkStrengthPass()"
-                />
-                <span class="show-pass" onclick="showPassWord()">
-                  <img src="./src/images/icon-eye.svg" alt="" id="icon-eye" />
+              <div class="btns-group">
+                <button id="btn-submit-step2" class="btn btn-submit" disabled>
+                  Xác thực
                   <img
-                    src="./src/images/icon-eye-hidden.svg"
+                    src="./src/images/icon_arrow_right.svg"
                     alt=""
-                    id="icon-eye-hidden"
+                    srcset=""
                   />
-                </span>
+                </button>
+                <a href="#" class="btn-prev">Quay lại</a>
               </div>
-            </div>
-            <div class="input-group">
-              <div class="input-group-small">
-                <input
-                  type="password"
-                  name="password-confirm"
-                  id="password-confirm"
-                  placeholder="Xác nhận mật khẩu *"
-                  oninput="showIcon()"
-                />
-                <span class="show-pass" onclick="showConfirmPassWord()">
-                  <img src="./src/images/icon-eye.svg" alt="" id="icon-eye2" />
-                  <img
-                    src="./src/images/icon-eye-hidden.svg"
-                    alt=""
-                    id="icon-eye-hidden2"
+              <!-- <div class="btns-group">
+                <a href="#" class="btn btn-next ml-auto"
+                  >Xác thực
+                  <img src="./src/images/icon_arrow_right.svg" alt="" srcset=""
+                /></a>
+                <a href="#" class="btn-prev">Quay lại</a>
+              </div> -->
+            </form>
+            <!---------------------------- form-step-3 ---------------------------->
+            <form class="form-step form-step-3">
+              <span class="sub-title-form">Nhập mật khẩu bảo mật</span>
+              <ul class="lists-condition-password">
+                <li>
+                  <span class="circle eight-character"></span>
+                  Độ dài tối thiểu 8 ký tự
+                </li>
+                <li>
+                  <span class="circle low-upper-case"></span>
+                  Gồm chữ cái thường, chữ cái HOA
+                </li>
+                <li>
+                  <span class="circle one-special-char"></span>
+                  Ít nhất 1 ký tự đặc biệt.
+                </li>
+              </ul>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Mật khẩu *"
+                    oninput="showIcon()"
+                    onkeyup="checkStrengthPass();disabledButton();"
+                    onchange="checkStrengthPass();disabledButton();"
+                    onKeyDown="if(event.keyCode === 32)
+                             return false;"
                   />
-                </span>
+                  <span class="show-pass" onclick="showPassWord()">
+                    <img src="./src/images/icon-eye.svg" alt="" id="icon-eye" />
+                    <img
+                      src="./src/images/icon-eye-hidden.svg"
+                      alt=""
+                      id="icon-eye-hidden"
+                    />
+                  </span>
+                </div>
               </div>
-              <small>Error message</small>
-            </div>
-            <div class="btns-group">
-              <button id="btn-submit-step3" class="btn btn-submit" disabled>
-                Tạo tài khoản
-              </button>
-            </div>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="password"
+                    name="password-confirm"
+                    id="password-confirm"
+                    placeholder="Xác nhận mật khẩu *"
+                    oninput="showIcon()"
+                    onKeyDown="if(event.keyCode === 32) return false;"
+                  />
+                  <span class="show-pass" onclick="showConfirmPassWord()">
+                    <img
+                      src="./src/images/icon-eye.svg"
+                      alt=""
+                      id="icon-eye2"
+                    />
+                    <img
+                      src="./src/images/icon-eye-hidden.svg"
+                      alt=""
+                      id="icon-eye-hidden2"
+                    />
+                  </span>
+                </div>
+                <small>Error message</small>
+              </div>
+              <div class="btns-group">
+                <button id="btn-submit-step3" class="btn btn-submit" disabled>
+                  Tạo tài khoản
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Form Forgot Password  -->
+          <form id="forgot-password" class="tab-pane">
+            <h1>forgot-password</h1>
           </form>
         </div>
-
-        <!-- Form Forgot Password  -->
-        <form id="forgot-password" class="tab-pane">
-          <h1>forgot-password</h1>
-        </form>
       </div>
+    </div>
+    <div class="custom-model-main">
+      <div class="custom-model-inner">
+        <!-- <div class="close-btn" onclick="modelClose()">×</div> -->
+        <div class="custom-model-wrap">
+          <div class="pop-up-content-wrap">
+            <div class="logo-modal">
+              <img src="./src/images/logo-modal.png" alt="" />
+            </div>
+            <p class="title-modal">Đăng ký thành công !</p>
+            <p class="sub-title-modal">
+              Tài khoản của bạn đã sẵn sàng để đăng nhập, bạn vui lòng bấm nút
+              dưới để tiếp tục.
+            </p>
+            <button class="button-submit-modal" onclick="modelClose()">
+              Đăng nhập
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-overlay" onclick="modelClose()"></div>
     </div>
     <script src="./src/js/main.js"></script>
   </body>
