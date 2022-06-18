@@ -156,7 +156,12 @@
                 </div>
               </div>
               <div class="resend">
-                <button class="resend-title" id="begin" onclick="validateOTP()">
+                <button
+                  class="resend-title"
+                  id="begin"
+                  onclick="validateOTP()"
+                  disabled
+                >
                   Gửi lại
                 </button>
                 <span class="resend-time" id="exampleElement">
@@ -207,8 +212,8 @@
                     id="password"
                     placeholder="Mật khẩu *"
                     oninput="showIcon()"
-                    onkeyup="checkStrengthPass();disabledButton();"
-                    onchange="checkStrengthPass();disabledButton();"
+                    onkeyup="checkStrengthPass();disabledButton();ter();"
+                    onchange="checkStrengthPass();disabledButton();ter();"
                     onKeyDown="if(event.keyCode === 32)
                              return false;"
                   />
@@ -230,7 +235,12 @@
                     id="password-confirm"
                     placeholder="Xác nhận mật khẩu *"
                     oninput="showIcon()"
+                    onkeyup="ter();"
+                    onchange="ter();"
                     onKeyDown="if(event.keyCode === 32) return false;"
+                    oncopy="return false"
+                    oncut="return false"
+                    onpaste="return false"
                   />
                   <span class="show-pass" onclick="showConfirmPassWord()">
                     <img
