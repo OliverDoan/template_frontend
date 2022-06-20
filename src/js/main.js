@@ -1,6 +1,8 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-// -------------------------------------Change Form Login, Form Register, Form Forgot Password
+
+// ------- Change Form Login, Form Register, Form Forgot Password -------
+
 const tabs = $$(".button-box .toggle-btn");
 const tabActive = $(".button-box .toggle-btn.active");
 const panes = $$(".form-box .tab-pane");
@@ -21,7 +23,8 @@ tabs.forEach((tab, index) => {
   };
 });
 
-// -------------------------------------Change Step in form register
+// ------- Change Step in form register -------
+
 const prevBtns = $$(".btn-prev");
 const nextBtns = $$(".btn-next");
 const progress = $("#progress");
@@ -43,6 +46,12 @@ prevBtns.forEach((btn) => {
     formStepsNum--;
     updateFormSteps();
     updateProgressbar();
+    if (timing != 0) {
+      clearInterval(myTimer);
+      $("#number-otp").value = "";
+      $("#number-otp").style.border = "1px solid #eaf0fd";
+      $("#btn-submit-step2").setAttribute("disabled", true);
+    }
   });
 });
 
@@ -65,17 +74,72 @@ function updateProgressbar() {
     }
   });
 }
-// -------------------------------------Validate Step 1 in form register
-const formStep1 = $(".form-step-1");
-const formStep2 = $(".form-step-2");
-const formStep3 = $(".form-step-3");
-// feature check value input when typing
-function showIcon() {
+
+// ------- Handle Modal Form in the Form Register -------
+function modelOpen() {
+  $(".custom-model-main").classList.add("model-open");
+}
+
+function modelClose() {
+  $(".custom-model-main").classList.remove("model-open");
+}
+
+function handleReloadPage() {
+  location.reload();
+}
+
+// ------- Handle Submit Step Events in the Form Register -------
+$(".form-step-1").addEventListener("submit", (e) => {
+  e.preventDefault();
+  checkValidateStep1();
+  hideLastPhoneNumber();
+  validateOTP();
+  // clearInterval(myTimer);
+});
+
+$(".form-step-2").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const valueOTP = $("#number-otp").value.trim();
+  if (valueOTP.length > 0 && valueOTP.length === 6) {
+    formStepsNum++;
+    updateFormSteps();
+    updateProgressbar();
+  }
+});
+
+$(".form-step-3").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const valuePassword = $("#password").value.trim();
+  const valuePasswordConfirm = $("#password-confirm").value.trim();
+  const passwordConfirm = $("#password-confirm");
+  const password = $("#password");
+  const valuePasswordMatch = valuePassword.match(
+    /[a-zA-Z0-9,!,@,#,$,%,^,&,*,_,~,(,)]+/g
+  );
+
+  if (valuePassword.length != valuePasswordMatch.join("").length) {
+    setErrorFor(password, "Mật khẩu không được phép có dấu");
+  } else if (valuePasswordConfirm !== valuePassword) {
+    setSuccessFor(password);
+    setErrorFor(passwordConfirm, "Mật khẩu không trùng nhau");
+  } else {
+    setSuccessFor(passwordConfirm);
+    modelOpen();
+  }
+});
+
+// ------- Handle Step 1 in the Form Register -------
+let booleanCheckValidatePhone = false;
+let booleanCheckValidateUsername = false;
+let booleanCheckValidateEmail = false;
+
+function handleInput() {
   displayIconRemove();
   removeValue();
   changeBorder();
   disabledButton();
 }
+
 function displayIconRemove() {
   const valuePhone = $("#phone").value.trim();
   const valueUsername = $("#username").value.trim();
@@ -84,65 +148,53 @@ function displayIconRemove() {
   const valuePassword = $("#password").value.trim();
   const valuePasswordConfirm = $("#password-confirm").value.trim();
 
-  if (valuePhone.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[0]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[0]
-      .classList.add("active-icon");
-  }
+  valuePhone.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[0]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[0]
+        .classList.add("active-icon");
 
-  if (valueUsername.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[1]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[1]
-      .classList.add("active-icon");
-  }
+  valueUsername.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[1]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[1]
+        .classList.add("active-icon");
 
-  if (valueEmail.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[2]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[2]
-      .classList.add("active-icon");
-  }
+  valueEmail.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[2]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[2]
+        .classList.add("active-icon");
 
-  if (valueOTP.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[3]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[3]
-      .classList.add("active-icon");
-  }
+  valueOTP.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[3]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[3]
+        .classList.add("active-icon");
 
-  if (valuePassword.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[4]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[4]
-      .classList.add("active-icon");
-  }
+  valuePassword.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[4]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[4]
+        .classList.add("active-icon");
 
-  if (valuePasswordConfirm.length <= 0) {
-    document
-      .getElementsByClassName("input-group")[5]
-      .classList.remove("active-icon");
-  } else {
-    document
-      .getElementsByClassName("input-group")[5]
-      .classList.add("active-icon");
-  }
+  valuePasswordConfirm.length <= 0
+    ? document
+        .getElementsByClassName("input-group")[5]
+        .classList.remove("active-icon")
+    : document
+        .getElementsByClassName("input-group")[5]
+        .classList.add("active-icon");
 }
 
 function removeValue() {
@@ -152,7 +204,7 @@ function removeValue() {
   const removeOTP = $("#number-otp + .remove");
 
   removePhone.addEventListener("click", () => {
-    document.querySelector("#phone").value = "";
+    $("#phone").value = "";
     document
       .getElementsByClassName("input-group")[0]
       .classList.remove("active-icon");
@@ -168,7 +220,7 @@ function removeValue() {
   });
 
   removeEmail.addEventListener("click", () => {
-    document.querySelector("#email").value = "";
+    $("#email").value = "";
     document
       .getElementsByClassName("input-group")[2]
       .classList.remove("active-icon");
@@ -176,7 +228,7 @@ function removeValue() {
   });
 
   removeOTP.addEventListener("click", () => {
-    document.querySelector("#number-otp").value = "";
+    $("#number-otp").value = "";
     document
       .getElementsByClassName("input-group")[3]
       .classList.remove("active-icon");
@@ -211,11 +263,7 @@ function changeBorder() {
     : "1px solid #eaf0fd";
 }
 
-// check validate input when submit
-let booleanCheckValidatePhone = false;
-let booleanCheckValidateUsername = false;
-let booleanCheckValidateEmail = false;
-function checkValidate() {
+function checkValidateStep1() {
   validatePhoneNumber();
   validateUsername();
   validateEmail();
@@ -237,23 +285,21 @@ function validatePhoneNumber() {
   // Validate phone number
   const PHONE_REG =
     /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
+  booleanCheckValidatePhone = false;
+
   if (valuePhone === "") {
     setErrorFor(phone, "Vui lòng không bỏ trống");
-    booleanCheckValidatePhone = false;
   } else if (/\D/.test(valuePhone)) {
     setErrorFor(phone, "Số điện thoại chỉ bao gồm ký tự 0 - 9");
-    booleanCheckValidatePhone = false;
   } else if (valuePhone.length > 10) {
     setErrorFor(phone, "Số điện thoại không vượt quá 10 số");
-    booleanCheckValidatePhone = false;
   } else if (!valuePhone.match(PHONE_REG)) {
     setErrorFor(phone, "Số điện thoại không đúng");
-    booleanCheckValidatePhone = false;
   } else {
     setSuccessFor(phone);
     booleanCheckValidatePhone = true;
   }
-  console.log("Phone Validation: " + booleanCheckValidatePhone);
+
   return booleanCheckValidatePhone;
 }
 
@@ -261,17 +307,15 @@ function validateUsername() {
   const valueUsername = $("#username").value.trim();
   const USERNAME_NUM_REG = /[0-9]/;
   const USERNAME_SPECIAL_CHAR_REG = /([!,@,#,$,%,^,&,*,_,~,(,)])/;
+  booleanCheckValidateUsername = false;
+
   // Validate username
   if (valueUsername === "") {
     setErrorFor(username, "Vui lòng không bỏ trống");
-    booleanCheckValidateUsername = false;
   } else if (valueUsername.match(USERNAME_SPECIAL_CHAR_REG)) {
     setErrorFor(username, "Họ và tên không chứa ký tự đặc biệt");
-    booleanCheckValidateUsername = false;
   } else if (valueUsername.match(USERNAME_NUM_REG)) {
     setErrorFor(username, "Họ và tên không chứa số");
-    booleanCheckValidateUsername = false;
-    console.log(">>>Have number");
   } else {
     setSuccessFor(username);
     booleanCheckValidateUsername = true;
@@ -281,31 +325,31 @@ function validateUsername() {
 
 function validateEmail() {
   const valueEmail = $("#email").value.trim();
+  const EMAIL_REG = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+  booleanCheckValidateEmail = false;
 
   // Validate email
-  const EMAIL_REG = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   if (valueEmail === "") {
     setErrorFor(email, "Vui lòng không bỏ trống");
-    booleanCheckValidateEmail = false;
   } else if (!valueEmail.match(EMAIL_REG)) {
     setErrorFor(email, "Email không đúng");
-    booleanCheckValidateEmail = false;
   } else {
     setSuccessFor(email);
     booleanCheckValidateEmail = true;
   }
   return booleanCheckValidateEmail;
 }
-// .replace(/[\uE000-\uF8FF]/g, "")
+
 function validatePassword() {
   let valuePassword = password.value.trim();
   const PASS_REG = /[\uE000-\uF8FF]/g;
+  booleanCheckValidatePassword = false;
+
+  // Validate password
   if (valuePassword === "") {
     setErrorFor(password, "Vui lòng không bỏ trống");
-    booleanCheckValidatePassword = false;
   } else if (valueUsername.match(PASS_REG)) {
     setErrorFor(password, "Pass không chứa ký tự đặc biệt");
-    booleanCheckValidatePassword = false;
   } else {
     setSuccessFor(password);
     booleanCheckValidatePassword = true;
@@ -314,7 +358,6 @@ function validatePassword() {
 }
 
 function setErrorFor(input, message) {
-  // console.log(input);
   const inputGroup = input.parentElement.parentElement;
   const small = inputGroup.querySelector("small");
   inputGroup.classList.add("error");
@@ -327,41 +370,51 @@ function setSuccessFor(input) {
   inputGroup.classList.contains("error") &&
     inputGroup.classList.remove("error");
 }
-// Submit Step 1
-formStep1.addEventListener("submit", (e) => {
-  e.preventDefault();
-  checkValidate();
-  hideLastPhoneNumber();
-  validateOTP();
-});
-// Submit Step 2
-formStep2.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const valueOTP = $("#number-otp").value.trim();
-  if (valueOTP.length > 0) {
-    formStepsNum++;
-    updateFormSteps();
-    updateProgressbar();
-  }
-});
-// Submit Step 3
-formStep3.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const valuePassword = $("#password").value.trim();
-  const valuePasswordConfirm = $("#password-confirm").value.trim();
-  const passwordConfirm = $("#password-confirm");
 
-  if (valuePasswordConfirm !== valuePassword) {
-    setErrorFor(passwordConfirm, "Mật khẩu không trùng nhau");
-  } else {
-    setSuccessFor(passwordConfirm);
-    modelOpen();
-    console.log("Thành công");
-  }
-});
-// -------------------------------------Validate Step 3 in form register
+// ------- Handle Step 2 in the Form Register -------
+let myTimer, timing;
 
-// Show password field
+function validateOTP() {
+  timing = String(60).padStart(2, "0");
+  $("#timing").innerHTML = timing;
+  $("#begin").setAttribute("disabled", true);
+  $("#begin").style.color = "#8e9abb";
+  $("#begin").style.cursor = "auto";
+  myTimer = setInterval(function () {
+    --timing;
+    seconds = String(timing).padStart(2, "0");
+    $("#timing").innerHTML = seconds;
+
+    if (timing === 0) {
+      clearInterval(myTimer);
+      $("#begin").removeAttribute("disabled");
+      $("#begin").style.color = "#0979fd";
+      $("#timing").innerHTML = 60;
+      $("#begin").style.cursor = "pointer";
+    }
+  }, 1000);
+
+  return timing;
+}
+
+function onlyNumberKey(evt) {
+  // Only ASCII character in that range allowed
+  var ASCIICode = evt.which ? evt.which : evt.keyCode;
+  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) return false;
+  return true;
+}
+
+function hideLastPhoneNumber() {
+  $(".last-four-number").innerHTML = $("#phone")
+    .value.trim()
+    .replace(/\d{7}(\d{3})/, "••••••$1");
+}
+
+// ------- Handle Step 3 in the Form Register -------
+let booleanLowerUpperCase = false;
+let booleanSpecialChar = false;
+let booleanEightChar = false;
+
 function showPassWord() {
   let elementPassword = $(".input-group #password");
   let iconEye = $("#icon-eye");
@@ -377,6 +430,7 @@ function showPassWord() {
     iconEyeHidden.style.display = "none";
   }
 }
+
 function showConfirmPassWord() {
   let elementPasswordConfirm = $(".input-group #password-confirm");
   let iconEye = $("#icon-eye2");
@@ -392,16 +446,7 @@ function showConfirmPassWord() {
     iconEyeHidden.style.display = "none";
   }
 }
-function modelOpen() {
-  $(".custom-model-main").classList.add("model-open");
-}
-function modelClose() {
-  $(".custom-model-main").classList.remove("model-open");
-}
 
-let booleanLowerUpperCase = false;
-let booleanSpecialChar = false;
-let booleanEightChar = false;
 function checkStrengthPass() {
   let lowerUpperCase = $(".low-upper-case");
   let specialChar = $(".one-special-char");
@@ -437,7 +482,6 @@ function checkStrengthPass() {
 }
 
 function disabledButton() {
-  // console.log(">>>Disable");
   const valuePhone = $("#phone").value.trim();
   const valueUsername = $("#username").value.trim();
   const valueEmail = $("#email").value.trim();
@@ -468,7 +512,7 @@ function disabledButton() {
     btnSubmitStep1.setAttribute("disabled", true);
   }
   // Disable buttons submit step 1
-  if (valueOTP !== "") {
+  if (valueOTP !== "" && valueOTP.length == 6) {
     btnSubmitStep2.removeAttribute("disabled");
   } else {
     btnSubmitStep2.setAttribute("disabled", true);
@@ -487,53 +531,7 @@ function disabledButton() {
   }
 }
 
-function onlyNumberKey(evt) {
-  // Only ASCII character in that range allowed
-  var ASCIICode = evt.which ? evt.which : evt.keyCode;
-  if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) return false;
-  return true;
-}
-
-function validateOTP() {
-  var myTimer,
-    timing = String(60).padStart(2, "0");
-  $("#timing").innerHTML = timing;
-  $("#begin").setAttribute("disabled", true);
-  $("#begin").style.color = "#8e9abb";
-  $("#begin").style.cursor = "auto";
-  myTimer = setInterval(function () {
-    --timing;
-    seconds = String(timing).padStart(2, "0");
-    $("#timing").innerHTML = seconds;
-
-    if (timing === 0) {
-      clearInterval(myTimer);
-      $("#begin").removeAttribute("disabled");
-      $("#begin").style.color = "#0979fd";
-      $("#timing").innerHTML = 60;
-    }
-  }, 1000);
-}
-
-function hideLastPhoneNumber() {
-  $(".last-four-number").innerHTML = $("#phone")
-    .value.trim()
-    .replace(/\d{7}(\d{3})/, "••••••$1");
-
-  const valuePhone = $("#phone").value.trim();
-  console.log(valuePhone);
-}
-
-function ter() {
-  console.log(">>>ĐỔi character");
-  str = $("#password")
-    .value.trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D");
-
-  console.log(">>STR:" + str);
-  $("#password").value = str;
-  return str;
+function handleValuePassword() {
+  checkStrengthPass();
+  disabledButton();
 }

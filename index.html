@@ -11,28 +11,24 @@
     <div class="container-form-group">
       <div class="list-all-form">
         <div class="form-logo">
-          <img src="./src/images/logo.png" alt="" class="form-logo" />
+          <img src="./src/images/logo.png" alt="logo.png" class="form-logo" />
         </div>
         <div class="form-box">
           <div class="button-box-big">
             <!-- button-box -->
             <div class="button-box">
               <div class="line"></div>
-              <button type="button" class="toggle-btn">Đăng nhập</button>
-              <button type="button" class="toggle-btn active">Đăng ký</button>
+              <button type="button" class="toggle-btn active">Đăng nhập</button>
+              <button type="button" class="toggle-btn">Đăng ký</button>
               <button type="button" class="toggle-btn">Khôi phục</button>
             </div>
           </div>
           <!-- Form Login  -->
-          <form id="login" class="tab-pane">
+          <form id="login" class="tab-pane active">
             <h1>login</h1>
           </form>
           <!-- Form Register -->
-          <div
-            id="register"
-            class="tab-pane active form-register"
-            action="./login.html"
-          >
+          <div id="register" class="tab-pane form-register">
             <!-- Progress bar -->
             <div class="progressbar">
               <div class="progress" id="progress"></div>
@@ -62,13 +58,15 @@
                   <input
                     type="text"
                     id="phone"
-                    placeholder="Số điện thoại *"
-                    oninput="showIcon()"
+                    oninput="handleInput()"
+                    autocomplete="off"
                   />
-
                   <span class="remove"
-                    ><img src="./src/images/icon-remove.svg" alt=""
+                    ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
+                  <label class="placeholder"
+                    >Số điện thoại <span>*</span></label
+                  >
                 </div>
                 <small>Error message</small>
               </div>
@@ -77,12 +75,13 @@
                   <input
                     type="text"
                     id="username"
-                    placeholder="Họ & tên *"
-                    oninput="showIcon()"
+                    oninput="handleInput()"
+                    autocomplete="off"
                   />
                   <span class="remove"
-                    ><img src="./src/images/icon-remove.svg" alt=""
+                    ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
+                  <label class="placeholder">Họ & tên <span>*</span></label>
                 </div>
                 <small>Error message</small>
               </div>
@@ -91,12 +90,13 @@
                   <input
                     type="text"
                     id="email"
-                    placeholder="Email *"
-                    oninput="showIcon()"
+                    oninput="handleInput()"
+                    autocomplete="off"
                   />
                   <span class="remove"
-                    ><img src="./src/images/icon-remove.svg" alt=""
+                    ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
+                  <label class="placeholder">Email <span>*</span></label>
                 </div>
                 <small>Error message</small>
               </div>
@@ -110,7 +110,7 @@
                 <label for="policy" class="checkbox-custom">
                   <img
                     src="./src/images/icon-tick.svg"
-                    alt=""
+                    alt="icon-tick"
                     class="icon-check"
                   />
                 </label>
@@ -146,12 +146,13 @@
                     name="number-otp"
                     id="number-otp"
                     placeholder="Nhập mã OTP"
-                    oninput="showIcon()"
+                    oninput="handleInput()"
                     onkeypress="return onlyNumberKey(event)"
                     maxlength="6"
+                    autocomplete="off"
                   />
                   <span class="remove"
-                    ><img src="./src/images/icon-remove.svg" alt=""
+                    ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
                 </div>
               </div>
@@ -173,19 +174,11 @@
                   Xác thực
                   <img
                     src="./src/images/icon_arrow_right.svg"
-                    alt=""
-                    srcset=""
+                    alt="icon_arrow_right"
                   />
                 </button>
                 <a href="#" class="btn-prev">Quay lại</a>
               </div>
-              <!-- <div class="btns-group">
-                <a href="#" class="btn btn-next ml-auto"
-                  >Xác thực
-                  <img src="./src/images/icon_arrow_right.svg" alt="" srcset=""
-                /></a>
-                <a href="#" class="btn-prev">Quay lại</a>
-              </div> -->
             </form>
             <!---------------------------- form-step-3 ---------------------------->
             <form class="form-step form-step-3">
@@ -207,25 +200,28 @@
               <div class="input-group">
                 <div class="input-group-small">
                   <input
+                    autocomplete="off"
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="Mật khẩu *"
-                    oninput="showIcon()"
-                    onkeyup="checkStrengthPass();disabledButton();ter();"
-                    onchange="checkStrengthPass();disabledButton();ter();"
-                    onKeyDown="if(event.keyCode === 32)
-                             return false;"
+                    oninput="handleInput();handleValuePassword()"
+                    onKeyDown="if(event.keyCode === 32) return false;"
                   />
                   <span class="show-pass" onclick="showPassWord()">
-                    <img src="./src/images/icon-eye.svg" alt="" id="icon-eye" />
+                    <img
+                      src="./src/images/icon-eye.svg"
+                      alt="icon-eye"
+                      id="icon-eye"
+                    />
                     <img
                       src="./src/images/icon-eye-hidden.svg"
-                      alt=""
+                      alt="icon-eye-hidden"
                       id="icon-eye-hidden"
                     />
                   </span>
+                  <label class="placeholder">Mật khẩu <span>*</span></label>
                 </div>
+                <small>Error message</small>
               </div>
               <div class="input-group">
                 <div class="input-group-small">
@@ -233,27 +229,28 @@
                     type="password"
                     name="password-confirm"
                     id="password-confirm"
-                    placeholder="Xác nhận mật khẩu *"
-                    oninput="showIcon()"
-                    onkeyup="ter();"
-                    onchange="ter();"
+                    oninput="handleInput();"
                     onKeyDown="if(event.keyCode === 32) return false;"
                     oncopy="return false"
                     oncut="return false"
                     onpaste="return false"
+                    autocomplete="off"
                   />
                   <span class="show-pass" onclick="showConfirmPassWord()">
                     <img
                       src="./src/images/icon-eye.svg"
-                      alt=""
+                      alt="icon-eye"
                       id="icon-eye2"
                     />
                     <img
                       src="./src/images/icon-eye-hidden.svg"
-                      alt=""
+                      alt="icon-eye"
                       id="icon-eye-hidden2"
                     />
                   </span>
+                  <label class="placeholder"
+                    >Xác nhận mật khẩu <span>*</span></label
+                  >
                 </div>
                 <small>Error message</small>
               </div>
@@ -264,7 +261,6 @@
               </div>
             </form>
           </div>
-
           <!-- Form Forgot Password  -->
           <form id="forgot-password" class="tab-pane">
             <h1>forgot-password</h1>
@@ -274,7 +270,6 @@
     </div>
     <div class="custom-model-main">
       <div class="custom-model-inner">
-        <!-- <div class="close-btn" onclick="modelClose()">×</div> -->
         <div class="custom-model-wrap">
           <div class="pop-up-content-wrap">
             <div class="logo-modal">
@@ -285,7 +280,7 @@
               Tài khoản của bạn đã sẵn sàng để đăng nhập, bạn vui lòng bấm nút
               dưới để tiếp tục.
             </p>
-            <button class="button-submit-modal" onclick="modelClose()">
+            <button class="button-submit-modal" onclick="handleReloadPage()">
               Đăng nhập
             </button>
           </div>
