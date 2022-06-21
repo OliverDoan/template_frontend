@@ -3,14 +3,14 @@ const $$ = document.querySelectorAll.bind(document);
 
 // ------- Change Form Login, Form Register, Form Forgot Password -------
 
-const tabs = $$(".button-box .toggle-btn");
+const toggles = $$(".button-box .toggle-btn");
 const tabActive = $(".button-box .toggle-btn.active");
 const panes = $$(".form-box .tab-pane");
 const line = $(".button-box .line");
 
 line.style.left = tabActive.offsetLeft + "px";
 
-tabs.forEach((tab, index) => {
+toggles.forEach((tab, index) => {
   const pane = panes[index];
   tab.onclick = function () {
     $(".button-box .toggle-btn.active").classList.remove("active");
@@ -116,8 +116,14 @@ $(".form-step-3").addEventListener("submit", (e) => {
   const valuePasswordMatch = valuePassword.match(
     /[a-zA-Z0-9,!,@,#,$,%,^,&,*,_,~,(,)]+/g
   );
+  // console.log(">>> Password: " + valuePassword);
+  // console.log(">>> PasswordMatch: " + valuePasswordMatch);
+  // console.log(">>> PasswordLength: " + valuePassword.length);
+  // console.log(">>> PasswordMatchLength: " + valuePasswordMatch.length);
+  // console.log(typeof valuePassword);
+  // console.log(typeof valuePasswordMatch);
 
-  if (valuePassword.length != valuePasswordMatch.join("").length) {
+  if (valuePassword !== String(valuePasswordMatch)) {
     setErrorFor(password, "Mật khẩu không được phép có dấu");
   } else if (valuePasswordConfirm !== valuePassword) {
     setSuccessFor(password);
@@ -385,7 +391,7 @@ function validateOTP() {
     seconds = String(timing).padStart(2, "0");
     $("#timing").innerHTML = seconds;
 
-    if (timing === 0) {
+    if (timing <= 0) {
       clearInterval(myTimer);
       $("#begin").removeAttribute("disabled");
       $("#begin").style.color = "#0979fd";
