@@ -24,8 +24,57 @@
             </div>
           </div>
           <!-- Form Login  -->
-          <form id="login" class="tab-pane active">
-            <h1>login</h1>
+          <form
+            id="login"
+            class="tab-pane active"
+            onsubmit="handleSubmitLogin();"
+          >
+            <span class="sub-title-form">Nhập thông tin tài khoản</span>
+            <div class="input-group">
+              <div class="input-group-small">
+                <input type="text" id="phone-email" oninput="handleInput()" />
+                <span class="remove"
+                  ><img src="./src/images/icon-remove.svg" alt="icon-remove"
+                /></span>
+                <label class="placeholder"
+                  >Số điện thoại hoặc Email <span>*</span></label
+                >
+              </div>
+              <small>Error message</small>
+            </div>
+            <div class="input-group">
+              <div class="input-group-small">
+                <input
+                  type="password"
+                  id="password-login"
+                  oninput="handleInput()"
+                />
+                <span class="show-pass" onclick="showPassWordLogin()">
+                  <img
+                    src="./src/images/icon-eye.svg"
+                    alt="icon-eye"
+                    id="icon-eye-login"
+                  />
+                  <img
+                    src="./src/images/icon-eye-hidden.svg"
+                    alt="icon-eye-hidden"
+                    id="icon-eye-hidden-login"
+                  />
+                </span>
+                <label class="placeholder">Mật khẩu <span>*</span></label>
+              </div>
+              <small>Error message</small>
+            </div>
+            <div class="">
+              <button
+                id="btn-submit-login"
+                class="btn btn-submit"
+                disabled
+                onclick="handleReloadPage()"
+              >
+                Đăng nhập
+              </button>
+            </div>
           </form>
           <!-- Form Register -->
           <div id="register" class="tab-pane form-register">
@@ -47,20 +96,23 @@
               <div class="step">
                 <div class="line2"></div>
                 <div class="progress-step"><span>3</span></div>
+                <div class="line2"></div>
+              </div>
+              <div class="step">
+                <div class="line2"></div>
+                <div class="progress-step"><span>4</span></div>
               </div>
             </div>
             <!-- Steps -->
-            <!---------------------------- form-step-1---------------------------->
-            <form class="form-step form-step-1 form-step-active">
+            <!-- Form-step-1 -->
+            <form
+              class="form-step form-step-1 form-step-active"
+              onsubmit="handleSubmitStep1(event)"
+            >
               <span class="sub-title-form">Nhập thông tin đăng ký</span>
               <div class="input-group">
                 <div class="input-group-small">
-                  <input
-                    type="text"
-                    id="phone"
-                    oninput="handleInput()"
-                    autocomplete="off"
-                  />
+                  <input type="text" id="phone" oninput="handleInput()" />
                   <span class="remove"
                     ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
@@ -72,12 +124,7 @@
               </div>
               <div class="input-group">
                 <div class="input-group-small">
-                  <input
-                    type="text"
-                    id="username"
-                    oninput="handleInput()"
-                    autocomplete="off"
-                  />
+                  <input type="text" id="username" oninput="handleInput()" />
                   <span class="remove"
                     ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
@@ -87,12 +134,7 @@
               </div>
               <div class="input-group">
                 <div class="input-group-small">
-                  <input
-                    type="text"
-                    id="email"
-                    oninput="handleInput()"
-                    autocomplete="off"
-                  />
+                  <input type="text" id="email" oninput="handleInput()" />
                   <span class="remove"
                     ><img src="./src/images/icon-remove.svg" alt="icon-remove"
                   /></span>
@@ -132,8 +174,11 @@
                 </button>
               </div>
             </form>
-            <!---------------------------- form-step-2 ---------------------------->
-            <form class="form-step form-step-2">
+            <!-- Form-step-2 -->
+            <form
+              class="form-step form-step-2"
+              onsubmit="handleSubmitStep2(event)"
+            >
               <span class="sub-title-form">Xác thực OTP SMS</span>
               <p class="last-number">
                 Mã OTP gồm 6 chữ số đã được gửi về <br />số điện thoại
@@ -149,7 +194,6 @@
                     oninput="handleInput()"
                     onkeypress="return onlyNumberKey(event)"
                     maxlength="6"
-                    autocomplete="off"
                   />
                   <span class="remove"
                     ><img src="./src/images/icon-remove.svg" alt="icon-remove"
@@ -160,7 +204,7 @@
                 <button
                   class="resend-title"
                   id="begin"
-                  onclick="validateOTP()"
+                  onclick="countdown()"
                   disabled
                 >
                   Gửi lại
@@ -180,8 +224,61 @@
                 <a href="#" class="btn-prev">Quay lại</a>
               </div>
             </form>
-            <!---------------------------- form-step-3 ---------------------------->
-            <form class="form-step form-step-3">
+
+            <!-- Form-step-3 -->
+            <form
+              class="form-step form-step-3"
+              onsubmit="handleSubmitStep3(event)"
+            >
+              <span class="sub-title-form">Xác thực OTP Email</span>
+              <p class="last-number">
+                Mã OTP gồm 6 chữ số đã được gửi về <br />email
+                <strong class="information-email"> admin@gmail.com</strong>
+              </p>
+              <div class="input-group">
+                <div class="input-group-small">
+                  <input
+                    type="text"
+                    name="number-otp-email"
+                    id="number-otp-email"
+                    placeholder="Nhập mã OTP"
+                    oninput="handleInput()"
+                    onkeypress="return onlyNumberKey(event)"
+                    maxlength="6"
+                  />
+                  <span class="remove"
+                    ><img src="./src/images/icon-remove.svg" alt="icon-remove"
+                  /></span>
+                </div>
+              </div>
+              <div class="resend">
+                <button
+                  class="resend-title"
+                  id="beginEmail"
+                  onclick="countdownEmail()"
+                  disabled
+                >
+                  Gửi lại
+                </button>
+                <span class="resend-time" id="exampleElement">
+                  00:<span id="timingEmail">60</span> giây</span
+                >
+              </div>
+              <div class="btns-group">
+                <button id="btn-submit-step3" class="btn btn-submit" disabled>
+                  Xác thực
+                  <img
+                    src="./src/images/icon_arrow_right.svg"
+                    alt="icon_arrow_right"
+                  />
+                </button>
+              </div>
+            </form>
+            <!-- Form-step-4 -->
+            <form
+              class="form-step form-step-4"
+              onsubmit="handleSubmitStep4(event)"
+            >
               <span class="sub-title-form">Nhập mật khẩu bảo mật</span>
               <ul class="lists-condition-password">
                 <li>
@@ -200,7 +297,6 @@
               <div class="input-group">
                 <div class="input-group-small">
                   <input
-                    autocomplete="off"
                     type="password"
                     name="password"
                     id="password"
@@ -234,7 +330,6 @@
                     oncopy="return false"
                     oncut="return false"
                     onpaste="return false"
-                    autocomplete="off"
                   />
                   <span class="show-pass" onclick="showConfirmPassWord()">
                     <img
@@ -255,7 +350,7 @@
                 <small>Error message</small>
               </div>
               <div class="btns-group">
-                <button id="btn-submit-step3" class="btn btn-submit" disabled>
+                <button id="btn-submit-step4" class="btn btn-submit" disabled>
                   Tạo tài khoản
                 </button>
               </div>
